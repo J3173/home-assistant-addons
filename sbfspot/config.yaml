@@ -1,0 +1,13 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: SBFspot
+version: "0.0.1"
+slug: sbfspot
+description: SBFspot add-on
+url: "https://github.com/J3173/home-assistant-addons/tree/main/sbfspot"
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+init: false
