@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Start the example service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+# Add your code here
+declare interval
+interval=$(bashio::config 'Interval' 60)
+
+## Run your program
+/usr/local/bin/sbfspot.3/SBFspot -cfg/etc/sbfspot/SBFspot.cfg -d0 -v0 -mqtt
+bashio::log.debug "Waiting ${interval} seconds"
+sleep "${interval}"

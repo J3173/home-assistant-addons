@@ -1,22 +1,28 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM nakla/sbfspot
 
-# Execute during the build of the image
-#ARG TEMPIO_VERSION BUILD_ARCH
-#RUN \
-#    curl -sSLf -o /usr/bin/tempio \
-#    "https://github.com/home-assistant/tempio/releases/download/${TEMPIO_VERSION}/tempio_${BUILD_ARCH}"
+#
+# Build stage
+#
+ARG BUILD_FROM
+FROM $BUILD_FROM as build
 
-# Copy root filesystem
-COPY --chown=5000:5000 rootfs /
+RUN apk add --no-cache build-base bluez-dev boost-dev
 
-ENV TZ=Europe/Berlin
-ENV ENABLE_SBFSPOT=1
-ENV SBFSPOT_INTERVAL=60
-ENV ENABLE_SBFSPOT_UPLOAD=0
-ENV MQTT_ENABLE=1
-ENV QUIET=0
-ENV SBFSPOT_ARGS="-d0 -v0"
-ENV INIT_DB=0
+ARG sbfspot_version
+RUN wget -c https://github.com/SBFspot/SBFspot/archive/V$sbfspot_version.tar.gz
 
-VOLUME /etc/sbfspot /var/sbfspot
+RUN mkdir SBFspot
+RUN tar -xvf V$sbfspot_version.tar.gz -C SBFspot --strip-components 1
+
+WORKDIR SBFspot/SBFspot
+
+RUN make nosql
+RUN make install_nosql
+
+#
+# Final stage
+#
+FROM $BUILD_FROM
+RUN apk add --no-cache bluez-libs libstdc++ mosquitto-clients
+COPY --from=build /usr/local/bin/sbfspot.3 /usr/local/bin/sbfspot.3
+COPY rootfs /
