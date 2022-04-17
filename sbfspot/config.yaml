@@ -21,3 +21,4 @@ schema:
   IP_Address: str
   Password: password
   Interval: int
+image: "ghcr.io/j3173/{arch}-addon-sbfspot"
