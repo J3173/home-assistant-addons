@@ -9,6 +9,6 @@ labels:
   org.opencontainers.image.title: "SBFspot"
   org.opencontainers.image.description: "SBFspot"
   org.opencontainers.image.source: "https://github.com/J3173/home-assistant-addons"
-  org.opencontainers.image.licenses: "Apache License 2.0"
+  org.opencontainers.image.licenses: "(Apache-2.0 AND CC-BY-NC-SA-3.0)"
 args:
   sbfspot_version: "3.9.4"

@@ -1,6 +1,10 @@
 # SBFspot add-on
 
-See https://github.com/SBFspot/SBFspot and https://github.com/nakla/sbfspot
+[SBFspot](https://github.com/SBFspot/SBFspot) is an open source tool to read power production of SMA® solar inverters over Ethernet (Speedwire®).
+
+This Home Assistant add-on will use SBFspot to read the power production of your SMA® solar inverters and publish it to MQTT.
+
+Home Assistant add-on inspired by the Docker image by https://github.com/nakla/sbfspot.
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]

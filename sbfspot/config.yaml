@@ -2,7 +2,7 @@
 name: SBFspot
 version: "0.0.2"
 slug: sbfspot
-description: SBFspot add-on
+description: Tool to read power production of SMA® solar inverters
 url: "https://github.com/J3173/home-assistant-addons/tree/main/sbfspot"
 arch:
   - armhf
